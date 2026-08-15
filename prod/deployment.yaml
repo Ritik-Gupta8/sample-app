@@ -2,18 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: production-deployment
+  namespace: prod
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: production-app
+      app: production-deployment
   template:
     metadata:
       labels:
-        app: production-app
+        app: production-deployment
     spec:
       containers:
-      - name: production-container
-        image: us-west1-docker.pkg.dev/qwiklabs-gcp-01-01c88a101b18/my-repository/sample-app:v2.0
+      - name: production-deployment
+        image: us-west1-docker.pkg.dev/qwiklabs-gcp-01-01c88a101b18/my-repository/hello-cloudbuild-prod:v1.0
         ports:
         - containerPort: 8080
